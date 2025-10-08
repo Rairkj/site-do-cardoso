@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escola Alfredo Cardoso - Piracicaba, SP</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <h1>Alfredo Cardoso</h1>
+                <p>Piracicaba, SP</p>
+            </div>
+            <nav>
+                <a href="#inicio" class="nav-link active">Início</a>
+                <a href="#avisos" class="nav-link">Avisos</a>
+                <a href="#sobre" class="nav-link">Sobre</a>
+                <a href="https://flyaway999.github.io/inpution2/home-page/index.html" class="nav-link">Feedback</a>
+                <a href="#contato" class="nav-link">Contato</a>
+                <button id="adminBtn" class="admin-btn">Admin</button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="inicio" class="hero">
+            <div class="hero-content">
+                <h2 class="fade-in">Bem-vindo à Escola Alfredo Cardoso</h2>
+                <p class="fade-in-delay">Educação de qualidade para o futuro dos nossos jovens</p>
+                <button class="cta-button" onclick="document.getElementById('avisos').scrollIntoView({behavior: 'smooth'})">
+                    Ver Avisos
+                </button>
+            </div>
+        </section>
+
+        <section id="avisos" class="notices-section">
+            <div class="container">
+                <h2 class="section-title">Mural de Avisos</h2>
+                <div id="noticesGrid" class="notices-grid">
+                    <div class="loading">Carregando avisos...</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="sobre" class="about-section">
+            <div class="container">
+                <h2 class="section-title">Sobre Nossa Escola</h2>
+                <div class="about-content">
+                    <div class="about-card">
+                        <div class="card-icon">📚</div>
+                        <h3>Missão</h3>
+                        <p>Proporcionar educação de excelência, formando cidadãos críticos e preparados para os desafios do futuro.</p>
+                    </div>
+                    <div class="about-card">
+                        <div class="card-icon">🎯</div>
+                        <h3>Visão</h3>
+                        <p>Ser referência em educação na região de Piracicaba, promovendo desenvolvimento integral dos estudantes.</p>
+                    </div>
+                    <div class="about-card">
+                        <div class="card-icon">💡</div>
+                        <h3>Valores</h3>
+                        <p>Respeito, ética, inovação e compromisso com a comunidade escolar e sociedade.</p>
+                    </div>
+                </div>
+
+                <div class="info-grid">
+                    <div class="info-box">
+                        <h4>📅 Horário de Funcionamento</h4>
+                        <p>Segunda a Sexta: 7h às 18h</p>
+                    </div>
+                    <div class="info-box">
+                        <h4>🎓 Níveis de Ensino</h4>
+                        <p>Ensino Fundamental II e Médio</p>
+                    </div>
+                    <div class="info-box">
+                        <h4>👥 Alunos</h4>
+                        <p>Mais de 400 estudantes</p>
+                    </div>
+                    <div class="info-box">
+                        <h4>🏆 Diferenciais</h4>
+                        <p>Laboratórios, Biblioteca, Esportes</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+       <!-- Seção de Gestão Escolar -->
+<section id="gestao" class="management-section">
+  <div class="container">
+    <h2 class="section-title">Gestão Escolar</h2>
+    <div class="management-grid">
+      <div class="management-card">
+        <img src="https://via.placeholder.com/200" alt="Diretora" class="management-photo">
+        <h3>Rodrigo Romanin</h3>
+        <p>Diretor</p>
+      </div>
+
+      <div class="management-card">
+        <img src="https://via.placeholder.com/200" alt="Vice-Diretor" class="management-photo">
+        <h3>Juliana de Lourdes Honorio</h3>
+        <p>Vice-Diretora</p>
+      </div>
+
+      <div class="management-card">
+        <img src="https://via.placeholder.com/200" alt="Coordenadora" class="management-photo">
+        <h3>Eliana Maria Ferin</h3>
+        <p>Coordenadora</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+        <section id="contato" class="contact-section">
+            <div class="container">
+                <h2 class="section-title">Entre em Contato</h2>
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <span class="contact-icon">📍</span>
+                            <div>
+                                <h4>Endereço</h4>
+                                <p>R. Moraes Barros, 1884 - Alto, Piracicaba - SP, 13419-240</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon">📞</span>
+                            <div>
+                                <h4>Telefone</h4>
+                                <p>(19) 3434-9993</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon">📧</span>
+                            <div>
+                                <h4>Email</h4>
+                                <p>E020977A@EDUCACAO.SP.GOV.BR</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+      <!-- Seção da Equipe -->
+<section class="team-section">
+  <div class="container">
+    <h2 class="section-title">Equipe do Projeto</h2>
+    <div class="team-buttons">
+      <a href="https://instagram.com/olukyr" target="_blank" class="team-btn">Guilherme</a>
+      <a href="https://instagram.com/rai" target="_blank" class="team-btn">Rai</a>
+      <a href="https://instagram.com/iarley_rms" target="_blank" class="team-btn">Iarley</a>
+      <a href="https://instagram.com/____krodrigues" target="_blank" class="team-btn">Kawazin</a>
+    </div>
+  </div>
+</section>
+
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Escola Alfredo Cardoso - Piracicaba, SP. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <div id="adminModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Painel Administrativo</h2>
+
+            <div id="authSection">
+                <h3>Login</h3>
+                <input type="email" id="adminEmail" placeholder="Email">
+                <input type="password" id="adminPassword" placeholder="Senha">
+                <button id="loginBtn">Entrar</button>
+                <button id="registerBtn">Criar Conta</button>
+            </div>
+
+            <div id="adminPanel" style="display: none;">
+                <h3>Criar Novo Aviso</h3>
+                <input type="text" id="noticeTitle" placeholder="Título do Aviso">
+                <textarea id="noticeContent" placeholder="Conteúdo do Aviso" rows="4"></textarea>
+                <input type="url" id="noticeImage" placeholder="URL da Imagem (opcional)">
+                <input type="text" id="noticeAuthor" placeholder="Seu Nome">
+                <label>
+                    <input type="checkbox" id="noticePinned">
+                    Fixar no topo
+                </label>
+                <button id="createNoticeBtn">Publicar Aviso</button>
+                <button id="logoutBtn">Sair</button>
+
+                <div id="adminNoticesList"></div>
+
+                <div id="adminFeedbackSection">
+                    <h3>Feedbacks Recebidos</h3>
+                    <div id="adminFeedbackList"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="script.js"></script>
+</body>
+</html>
