@@ -1,12 +1,14 @@
-// Controle do menu ativo e scroll suave
+// ===============================
+// 🌐 Controle do menu ativo e scroll suave
+// ===============================
 const navLinks = document.querySelectorAll('.nav-link');
 
 navLinks.forEach(link => {
   link.addEventListener('click', function(e) {
     const href = this.getAttribute('href');
 
-    // Se for feedback, abre link externo em nova aba e previne o comportamento padrão
-    if(href.includes("flyaway999.github.io")) {
+    // Se for feedback, abre link externo em nova aba
+    if (href.includes("flyaway999.github.io")) {
       e.preventDefault();
       window.open(href, "_blank");
       return;
@@ -16,7 +18,6 @@ navLinks.forEach(link => {
     navLinks.forEach(l => l.classList.remove('active'));
     this.classList.add('active');
 
-    // Scroll suave para a seção
     const targetId = href.slice(1);
     const targetSection = document.getElementById(targetId);
     if (targetSection) {
@@ -25,7 +26,7 @@ navLinks.forEach(link => {
   });
 });
 
-// Atualiza menu ativo ao rolar a página
+// Atualiza o menu ativo ao rolar a página
 window.addEventListener('scroll', () => {
   const scrollY = window.pageYOffset;
   document.querySelectorAll('section[id]').forEach(section => {
@@ -41,39 +42,144 @@ window.addEventListener('scroll', () => {
   });
 });
 
-// Modal admin simples
+// ===============================
+// 🔐 Modal Admin + Login
+// ===============================
 const modal = document.getElementById('adminModal');
 const adminBtn = document.getElementById('adminBtn');
 const closeBtn = document.querySelector('.close');
 const loginBtn = document.getElementById('loginBtn');
 const logoutBtn = document.getElementById('logoutBtn');
 
-adminBtn.addEventListener('click', () => modal.style.display = 'block');
-closeBtn.addEventListener('click', () => modal.style.display = 'none');
-window.addEventListener('click', (e) => { if(e.target === modal) modal.style.display = 'none'; });
+// Abre modal admin
+adminBtn.addEventListener('click', () => {
+  modal.style.display = 'block';
+  document.body.style.overflow = 'hidden';
+});
 
-// Login fixo
+// Fecha modal
+closeBtn.addEventListener('click', () => {
+  modal.style.display = 'none';
+  document.body.style.overflow = 'auto';
+});
+
+window.addEventListener('click', (e) => {
+  if (e.target === modal) {
+    modal.style.display = 'none';
+    document.body.style.overflow = 'auto';
+  }
+});
+
+// ===============================
+// 👨‍💼 Login Admin
+// ===============================
 const ADMIN_EMAIL = "admin@escola.com";
 const ADMIN_PASSWORD = "123456";
 
 loginBtn.addEventListener('click', () => {
-  const email = document.getElementById('adminEmail').value;
-  const password = document.getElementById('adminPassword').value;
+  const email = document.getElementById('adminEmail').value.trim();
+  const password = document.getElementById('adminPassword').value.trim();
 
-  if(email === ADMIN_EMAIL && password === ADMIN_PASSWORD) {
-    alert("Login realizado com sucesso!");
+  if (email === ADMIN_EMAIL && password === ADMIN_PASSWORD) {
+    alert("✅ Login realizado com sucesso!");
     document.getElementById('authSection').style.display = 'none';
     document.getElementById('adminPanel').style.display = 'block';
     document.getElementById('adminEmail').value = '';
     document.getElementById('adminPassword').value = '';
+    loadNotices();
   } else {
-    alert("Email ou senha incorretos!");
+    alert("❌ Email ou senha incorretos!");
   }
 });
 
-// Logout simples
 logoutBtn.addEventListener('click', () => {
   document.getElementById('authSection').style.display = 'block';
   document.getElementById('adminPanel').style.display = 'none';
   modal.style.display = 'none';
+  document.body.style.overflow = 'auto';
 });
+
+// ===============================
+// 📝 Criar e exibir avisos
+// ===============================
+const createNoticeBtn = document.getElementById('createNoticeBtn');
+const noticesGrid = document.getElementById('noticesGrid');
+
+function loadNotices() {
+  const notices = JSON.parse(localStorage.getItem('notices')) || [];
+
+  // --- Mural público ---
+  noticesGrid.innerHTML = '';
+  const pinned = notices.filter(n => n.pinned);
+  const regular = notices.filter(n => !n.pinned);
+  [...pinned, ...regular].forEach(notice => {
+    const div = document.createElement('div');
+    div.className = 'notice-card';
+    div.innerHTML = `
+      ${notice.image ? `<img src="${notice.image}" alt="Aviso">` : ''}
+      <h3>${notice.title}</h3>
+      <p>${notice.content}</p>
+      <small>Autor: ${notice.author}</small>
+    `;
+    noticesGrid.appendChild(div);
+  });
+  if (notices.length === 0) {
+    noticesGrid.innerHTML = '<div class="loading">Nenhum aviso disponível</div>';
+  }
+
+  // --- Lista de avisos no painel admin ---
+  const adminNoticesList = document.getElementById('adminNoticesList');
+  adminNoticesList.innerHTML = '';
+  notices.forEach((notice, index) => {
+    const div = document.createElement('div');
+    div.className = 'admin-notice';
+    div.innerHTML = `
+      <strong>${notice.title}</strong> - ${notice.author}
+      <button class="delete-btn" data-index="${index}">Excluir</button>
+    `;
+    adminNoticesList.appendChild(div);
+  });
+
+  // Evento de excluir aviso
+  const deleteBtns = document.querySelectorAll('#adminNoticesList .delete-btn');
+  deleteBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const idx = btn.getAttribute('data-index');
+      const notices = JSON.parse(localStorage.getItem('notices')) || [];
+      notices.splice(idx, 1);
+      localStorage.setItem('notices', JSON.stringify(notices));
+      loadNotices();
+    });
+  });
+}
+
+// Criar novo aviso
+createNoticeBtn.addEventListener('click', () => {
+  const title = document.getElementById('noticeTitle').value.trim();
+  const content = document.getElementById('noticeContent').value.trim();
+  const image = document.getElementById('noticeImage').value.trim();
+  const author = document.getElementById('noticeAuthor').value.trim();
+  const pinned = document.getElementById('noticePinned').checked;
+
+  if (!title || !content || !author) {
+    alert('Preencha pelo menos título, conteúdo e autor!');
+    return;
+  }
+
+  const notices = JSON.parse(localStorage.getItem('notices')) || [];
+  notices.push({ title, content, image, author, pinned });
+  localStorage.setItem('notices', JSON.stringify(notices));
+
+  // Limpa campos
+  document.getElementById('noticeTitle').value = '';
+  document.getElementById('noticeContent').value = '';
+  document.getElementById('noticeImage').value = '';
+  document.getElementById('noticeAuthor').value = '';
+  document.getElementById('noticePinned').checked = false;
+
+  loadNotices();
+  alert('✅ Aviso publicado com sucesso!');
+});
+
+// Carrega avisos ao abrir página
+loadNotices();
