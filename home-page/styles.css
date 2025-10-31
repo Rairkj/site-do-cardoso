@@ -1011,3 +1011,78 @@ nav {
     .notices-grid { grid-template-columns: 1fr; }
     .section-title { font-size: 2rem; }
 }
+/* ==== Fundo da seção "Bem-vindo à Escola Alfredo Cardoso" ==== */
+.hero {
+    background-image: url("images/EE DR.webp");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: var(--white);
+    text-align: center;
+    padding: 100px 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Escurece levemente a imagem para destacar o texto */
+.hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.45);
+    z-index: 0;
+}
+
+/* Garante que o texto fique acima da imagem */
+.hero h2,
+.hero p,
+.hero .cta-button {
+    position: relative;
+    z-index: 1;
+}
+/* ==== Fundo da seção "Bem-vindo à Escola Alfredo Cardoso" ==== */
+.hero {
+    position: relative;
+    color: var(--white);
+    text-align: center;
+    padding: 100px 20px;
+    overflow: hidden;
+}
+
+/* Camada com a imagem de fundo */
+.hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url("images/EE DR.webp") center/cover no-repeat;
+    filter: blur(2px); /* 👈 deixa a imagem levemente embaçada */
+    transform: scale(1.05); /* evita bordas visíveis do blur */
+    z-index: 0;
+    opacity: 0.9;
+}
+
+/* Camada escura leve para contraste */
+.hero::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.45);
+    z-index: 0;
+}
+
+/* Garante que o conteúdo fique visível acima do fundo */
+.hero h2,
+.hero p,
+.hero .cta-button {
+    position: relative;
+    z-index: 1;
+}
