@@ -183,3 +183,46 @@ createNoticeBtn.addEventListener('click', () => {
 
 // Carrega avisos ao abrir página
 loadNotices();
+// ===============================
+// 🖼️ Preview da Imagem no Painel Admin
+// ===============================
+document.addEventListener("DOMContentLoaded", () => {
+    const noticeImageInput = document.getElementById("noticeImage");
+
+    if (!noticeImageInput) {
+        console.warn("Input noticeImage não encontrado.");
+        return;
+    }
+
+    // Criar preview se não existir
+    let preview = document.getElementById("imagePreview");
+
+    if (!preview) {
+        preview = document.createElement("img");
+        preview.id = "imagePreview";
+
+        // Estilos da imagem de preview
+        preview.style.display = "none";
+        preview.style.width = "100%";
+        preview.style.maxHeight = "200px";
+        preview.style.objectFit = "cover";
+        preview.style.borderRadius = "10px";
+        preview.style.marginTop = "10px";
+        preview.style.boxShadow = "0 0 10px rgba(0,0,0,0.2)";
+
+        // Insere logo abaixo do campo de URL da imagem
+        noticeImageInput.insertAdjacentElement("afterend", preview);
+    }
+
+    noticeImageInput.addEventListener("input", () => {
+        const url = noticeImageInput.value.trim();
+
+        if (!url) {
+            preview.style.display = "none";
+            return;
+        }
+
+        preview.src = url;
+        preview.style.display = "block";
+    });
+});

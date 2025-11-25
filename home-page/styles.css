@@ -278,11 +278,15 @@ nav {
     z-index: 1;
 }
 
-.notice-image {
+.notice img {
     width: 100%;
-    height: 200px;
-    object-fit: cover;
-    background: var(--light);
+    max-height: 300px; /* ajuste como quiser */
+    object-fit: cover; /* corta bordas para não distorcer */
+    border-radius: 10px;
+    margin-top: 10px;
+
+
+
 }
 
 .notice-content {
@@ -1085,4 +1089,18 @@ nav {
 .hero .cta-button {
     position: relative;
     z-index: 1;
+}
+.address-link {
+    color: inherit; 
+    text-decoration: none;
+}
+
+.address-link:hover {
+    text-decoration: underline;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* garante alinhamento bonito */
 }
